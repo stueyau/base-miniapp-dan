@@ -4,10 +4,37 @@ import { colors } from '../styles/colors';
 
 export const WalletConnect = () => {
   const { address, isConnected } = useAccount();
-  const { connect, connectors } = useConnect();
+  const { connect, connectors, error: connectError } = useConnect();
   const { disconnect } = useDisconnect();
 
+  // Debug logs
+  console.log('WalletConnect Debug:', {
+    isConnected,
+    address,
+    connectorsCount: connectors.length,
+    connectors: connectors.map(c => ({ id: c.id, name: c.name, type: c.type })),
+    connectError
+  });
+
+  const handleConnect = () => {
+    console.log('Connect button clicked');
+    console.log('Available connectors:', connectors);
+    
+    if (connectors.length === 0) {
+      console.error('No connectors available');
+      return;
+    }
+    
+    try {
+      console.log('Attempting to connect with connector:', connectors[0]);
+      connect({ connector: connectors[0] });
+    } catch (error) {
+      console.error('Error during connect:', error);
+    }
+  };
+
   if (isConnected && address) {
+    console.log('Wallet connected:', address);
     return (
       <div style={styles.container}>
         <div style={styles.connectedWrapper}>
@@ -27,12 +54,17 @@ export const WalletConnect = () => {
     <div style={styles.container}>
       <div style={styles.centerWrapper}>
         <button
-          onClick={() => connect({ connector: connectors[0] })}
+          onClick={handleConnect}
           style={styles.connectButton}
           disabled={connectors.length === 0}
         >
-          Connect Wallet
+          {connectors.length === 0 ? 'No Wallet Available' : 'Connect Wallet'}
         </button>
+        {connectError && (
+          <div style={styles.errorText}>
+            Error: {connectError.message}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -104,5 +136,12 @@ const styles = {
     cursor: 'pointer',
     fontFamily: 'Lexend, sans-serif',
     transition: 'all 0.2s',
+  },
+  errorText: {
+    marginTop: '8px',
+    fontSize: '11px',
+    color: colors.error,
+    fontFamily: 'Lexend, sans-serif',
+    textAlign: 'center',
   },
 };

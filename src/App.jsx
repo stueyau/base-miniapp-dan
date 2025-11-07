@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { sdk } from '@farcaster/miniapp-sdk';
 import { config } from './config/wagmi';
 import { WalletConnect } from './components/WalletConnect';
 import { RoundInfo } from './components/RoundInfo';
@@ -15,17 +16,15 @@ const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
-    // Initialize Farcaster SDK and hide splash screen
-    const initSDK = async () => {
-      try {
-        const { sdk } = await import('@farcaster/miniapp-sdk');
-        sdk.actions.ready();
-      } catch (error) {
-        console.error('Failed to initialize Farcaster SDK:', error);
-      }
-    };
-
-    initSDK();
+    // Hide splash screen once app is ready
+    console.log('Initializing Farcaster SDK...');
+    try {
+      sdk.actions.ready();
+      console.log('SDK ready() called successfully');
+      console.log('SDK context:', sdk.context);
+    } catch (error) {
+      console.error('Error calling SDK ready():', error);
+    }
   }, []);
 
   return (
