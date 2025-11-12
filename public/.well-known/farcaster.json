@@ -1,11 +1,11 @@
 {
   "accountAssociation": {
-    "header": "eyJmaWQiOjMyMDg5OCwidHlwZSI6ImF1dGgiLCJrZXkiOiIweDU0YThmMDk5ZTg0MDZFNzFBRjkyYTY0MDRFNDkyOTFjMzMzQjczMzkifQ",
-    "payload": "eyJkb21haW4iOiJtaW5pYXBwLWR1bi1ldGEudmVyY2VsLmFwcCJ9",
-    "signature": "z6HZNmfjubHDwAoY2KNA8CGhu2/9TRe8QrM4L5mOXjpu5DJjrPzLnySPqllSoMA4uKpuehO9g1Uz78/Uf/LjtBw="
+    "header": "eyJmaWQiOjE0NDAyMzcsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg1MjlENDM5ZUJBYzM5ZWMzNzFCQzdDNmUxOEI2NEM5NDcyOGFBYTZlIn0",
+    "payload": "eyJkb21haW4iOiJiYXNlLW1pbmlhcHAtZGFuLnZlcmNlbC5hcHAifQ",
+    "signature": "wdt3XrkqzvKFcBHLy/OL8j0XjoRb4t8G7EyJEveg9W8mxV8sgwwCNV2rv17oJFIi8Q7EqDacdZm+cDUe/UfsuBs="
   },
   "baseBuilder": {
-    "ownerAddress": "0xf7207ef6bFF15847e5620d4485Ba41A592592421"
+    "ownerAddress": "0xD11c45A7fC1B6E6222b3E6E211FbB10991DA8189"
   },
   "miniapp": {
     "version": "1",
